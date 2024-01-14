@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "accountName": "admin",
+      "email": "admin@mail.com",
+      "password": "admin",
+      "firstname": "admin",
+      "lastname": "admin",
+      "phone": "xxxxxxxx-xxxx",
+      "role": "ADMIN",
+      "currentRole": "NONE"
+    },
+    {
+      "id": 2,
+      "accountName": "admin",
+      "email": "admin@mail.com",
+      "password": "admin",
+      "firstname": "admin",
+      "lastname": "admin",
+      "phone": "xxxxxxxx-xxxx",
+      "role": "USER",
+      "currentRole": "BUYER"
+    },
+    {
+      "id": 3,
+      "accountName": "admin",
+      "email": "admin@mail.com",
+      "password": "admin",
+      "firstname": "admin",
+      "lastname": "admin",
+      "phone": "xxxxxxxx-xxxx",
+      "role": "DRIVER",
+      "currentRole": "OWNER"
+    }
+  ],
+  "shop": [],
+  "cart": [],
+  "products": [],
+  "comments": []
+}

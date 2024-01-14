@@ -1,0 +1,26 @@
+{
+    "English": {
+        "SellerCentre": "Seller Centre",
+        "StartSelling": "Start Selling",
+        "Download": "Download",
+        "FollowUsOn": "Follow us on",
+        "Notifications": "Notifications",
+        "Help": "Help",
+        "Languages": "Languages",
+        "SignUp": "Sign Up",
+        "Login": "Login",
+        "Search" : "Search"
+    },
+    "Vietnamese": {
+        "SellerCentre": "Kênh người bán",
+        "StartSelling": "Trở thành người bán Shopmee",
+        "Download": "Tải ứng dụng",
+        "FollowUsOn": "Kết nối",
+        "Notifications": "Thông báo",
+        "Help": "Hỗ trợ",
+        "Languages": "Ngôn ngữ",
+        "SignUp": "Đăng ký",
+        "Login": "Đăng nhập",
+        "Search": "Tìm sản phẩm"
+    }
+}
