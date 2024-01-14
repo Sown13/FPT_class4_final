@@ -1,16 +1,15 @@
 .navbar1-size {
-    width: 79vw;
-    color: #fff !important;
-    text-decoration: none;
-    font-size: .8125rem;
-    font-weight: 400;
-    padding: 0.25rem;
-    outline: 0;
-    background-color: #ee4d2d;
+  width: 79vw;
+  color: #fff !important;
+  text-decoration: none;
+  font-size: .8125rem;
+  font-weight: 400;
+  padding: 0.25rem;
+  outline: 0;
 }
 
 .nav-link {
-    color: white !important; 
+  color: white !important;
 }
 
 .nav-link:hover {
@@ -18,41 +17,48 @@
 }
 
 .navbar2-size {
-    width: 79vw;
+  width: 79vw;
 }
 
 .header-wrapper {
-    background-color: #ee4d2d;
-    max-height: 119px;
-    color: white;
+  background: #f53d2d;
+  background: linear-gradient(-180deg, #f53d2d, #f63);
+  min-height: 119px;
+  max-height: 119px;
+  color: white;
 }
 
 .search-button {
-    color: white;
-    background-color: #ee4d2d;
-    border-color: #ffffff;
-    border: 3px solid white;
-  }
+  color: white;
+  background-color: #ee4d2d;
+  border-color: #ffffff;
+  border: 3px solid white;
+}
 
-  .search-button:hover {
-    background-color: #f95d3e;
-    border-color: #ffffff;
-  }
-    .search-button:active {
-    background-color: #f95d3e !important;
-    border-color: #ffffff !important;
-  }
+.search-button:hover {
+  background-color: #f95d3e;
+  border-color: #ffffff;
+}
 
-  .form-style{
-    background-color: white;
-  }
-  .form-style {
-    border: 0;
-    border-radius: 6px;
-  }
+.search-button:active {
+  background-color: #f95d3e !important;
+  border-color: #ffffff !important;
+}
 
-  .sale {
-    font-weight: 100;
-    font-size: small;
-  }
-/* style={{backgroundColor:"#ee4d2d", color:"white"}} */
+.form-style {
+  background-color: white;
+}
+
+.form-style {
+  border: 0;
+  border-radius: 6px;
+}
+
+.sale {
+  font-weight: 100;
+  font-size: small;
+}
+
+.nav-bar-wrapper {
+  padding: 0 !important;
+}

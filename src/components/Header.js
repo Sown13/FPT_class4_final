@@ -1,6 +1,7 @@
 import "../css/components/Header.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const width = window.innerWidth; const height = window.innerHeight;
 console.log(`The viewport's width is ${width} and the height is ${height}`);
@@ -24,10 +25,10 @@ export default function Header() {
 
 
     return (
-        <div className="header-wrapper">
-            <div className="nav-bar-wrapper d-flex justify-content-center">
-                <nav className="navbar navbar-expand navbar1-size" style={{ backgroundColor: "#ee4d2d" }}>
-                    <div className="container-fluid">
+        <div className="header-wrapper d-flex flex-column mb-3">
+            <div className="nav-bar-wrapper d-flex justify-content-center p-2">
+                <nav className="navbar navbar-expand navbar1-size">
+                    <div className="container-fluid" style={{paddingLeft:"0"}}>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -47,7 +48,7 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className="container-fluid">
+                    <div className="container-fluid" style={{paddingRight:"0"}}>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -72,14 +73,14 @@ export default function Header() {
                                         </li>
                                     </ul>
                                 </div>
-                                <a className="nav-link active" href="#" aria-current="page" style={{fontWeight:"600"}}>{translation.SignUp}</a>
-                                <a className="nav-link active" href="#" aria-current="page" style={{fontWeight:"600"}}>{translation.Login}</a>
+                                <Link className="nav-link active" to="/signup" aria-current="page" style={{ fontWeight: "600" }}>{translation.SignUp}</Link>
+                                <Link className="nav-link active" to="/login" aria-current="page" style={{ fontWeight: "600" }}>{translation.Login}</Link>
                             </div>
                         </div>
                     </div>
                 </nav>
             </div>
-            <div className="header-with-search-bar d-flex justify-content-center">
+            <div className="header-with-search-bar d-flex justify-content-center p-2">
                 <div className="navbar2-size row">
                     <div className="col-2 d-flex align-self-center">
                         <div className="align-bottom" style={{ paddingRight: "5px" }}>
@@ -89,10 +90,10 @@ export default function Header() {
                     </div>
                     <div className="container-fluid col-9">
                         <form className="d-flex form-style" role="search">
-                            <input className="form-control me-2" type="search" placeholder={translation.Search} aria-label="Search" />
+                            <input className="form-control me-2" type="search" placeholder={translation.Search} aria-label="Search" style={{border: "0"}}/>
                             <button className="btn btn-outline-success search-button" type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
-                        <div className="d-flex justify-content-around sale">
+                        <div className="d-flex justify-content-around sale" style={{paddingTop:"4px"}}>
                             <a className="nav-link" href="#" aria-current="page">Sale 20%</a>
                             <a className="nav-link" href="#" aria-current="page">Sale 40%</a>
                             <a className="nav-link" href="#" aria-current="page">Sale 50%</a>
