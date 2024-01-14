@@ -16,3 +16,8 @@
     max-height: 84px;
     color: ee4d2d;
 }
+
+.header-login a {
+    text-decoration: none;
+    color: #ee4d2d;
+}

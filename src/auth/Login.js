@@ -37,8 +37,8 @@ export default function Login() {
                         </div>
                     </div>
                     <div className="login-form-footer d-flex justify-content-center align-self-center">
-                        <span>New to Shopee?</span>
-                        <Link> Sign Up </Link>
+                        <span style={{ color: "#a2a2a2" }}>New to Shopee? </span>
+                        <Link to={"/signup"}> Sign Up </Link>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,10 @@
-.login-page {
+.signup-page {
     background-color: rgb(238, 77, 45);
     min-height: 600px;
     position: relative;
 }
 
-.login-form {
+.signup-form {
     min-height: 482px;
     width: 400px;
     background-color: white;
@@ -18,36 +18,36 @@
     right: 200px;
 }
 
-.login-form-header {
+.signup-form-header {
     padding: 22px 30px 22px 30px;
 }
-.login-form-body {
+.signup-form-body {
     padding: 0 30px 30px 30px;
 }
 
-.login-button {
+.signup-button {
     background-color: #ee4d2d;
     border-color: #ee4d2d;
 }
 
-.login-button:hover {
+.signup-button:hover {
     background-color: #ee4d2d;
     border-color: #ee4d2d;
     filter: brightness(1.1);
 }
 
-.login-button:active {
+.signup-button:active {
     background-color: #ee4d2d !important;
     border-color:#ee4d2d !important;
     filter: brightness(0.9);
 }
 
-.login-form-body a {
+.signup-form-body a {
     text-decoration: none;
     font-size: 12px;
 }
 
-.login-form-footer a{
+.signup-form-footer a{
     color: #ee4d2d;
     font-size: 16px;
     font-weight: 600;
