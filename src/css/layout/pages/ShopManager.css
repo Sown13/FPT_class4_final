@@ -1,0 +1,12 @@
+.nav-tabs a {
+    color: black !important;
+}
+
+.nav-tabs a:hover {
+    color: #f53d2d !important;
+}
+
+/* .nav-link.active {
+    background-color: #f53d2d;
+    color: white;
+} */

@@ -1,8 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
-      "accountName": "admin",
+      "id": "admin",
       "email": "admin@mail.com",
       "password": "admin",
       "firstname": "admin",
@@ -12,9 +11,8 @@
       "currentRole": "NONE"
     },
     {
-      "id": 2,
-      "accountName": "admin",
-      "email": "admin@mail.com",
+      "id": "sonson1",
+      "email": "son1@mail.com",
       "password": "admin",
       "firstname": "admin",
       "lastname": "admin",
@@ -23,19 +21,155 @@
       "currentRole": "BUYER"
     },
     {
-      "id": 3,
-      "accountName": "admin",
-      "email": "admin@mail.com",
+      "id": "sonson2",
+      "email": "son2@mail.com",
       "password": "admin",
       "firstname": "admin",
       "lastname": "admin",
       "phone": "xxxxxxxx-xxxx",
       "role": "DRIVER",
-      "currentRole": "OWNER"
+      "currentRole": "OWNER",
+      "shopName": "",
+      "isShopActive": true
     }
   ],
-  "shop": [],
-  "cart": [],
-  "products": [],
+  "carts": [
+    {
+      "id": 1,
+      "userId": "sonson1",
+      "productId": 1,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "userId": "sonson1",
+      "productId": 2,
+      "quantity": 10
+    },
+    {
+      "id": 3,
+      "userId": "sonson2",
+      "productId": 3,
+      "quantity": 5
+    },
+    {
+      "id": 4,
+      "userId": "admin",
+      "productId": 1,
+      "quantity": 2
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Prototype Product 1",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson1"
+    },
+    {
+      "name": "Prototype Product 1",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 2
+    },
+    {
+      "name": "Banana",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 3
+    },
+    {
+      "name": "Prototype Product 1",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson1",
+      "id": 4
+    },
+    {
+      "name": "Apple",
+      "price": 200000,
+      "sale": 0,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": false,
+      "userId": "sonson2",
+      "id": 5
+    },
+    {
+      "name": "Potatoes",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson1",
+      "id": 6
+    },
+    {
+      "name": "Prototype Product 1",
+      "price": 200000,
+      "sale": 20,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson1",
+      "id": 7
+    },
+    {
+      "name": "Tomato",
+      "price": 200000,
+      "sale": 0,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 8
+    },
+    {
+      "name": "T-shirt",
+      "price": 200000,
+      "sale": 50,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": false,
+      "userId": "sonson2",
+      "id": 9
+    },
+    {
+      "name": "Prototype Product 1",
+      "price": 200000,
+      "sale": 40,
+      "type": "Daily",
+      "description": "none",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 10
+    }
+  ],
   "comments": []
 }

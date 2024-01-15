@@ -3,6 +3,9 @@ import Layout from './layout/Layout';
 import Home from './layout/pages/Home';
 import Signup from './auth/SignUp';
 import Login from './auth/Login';
+import ShopManager from './layout/pages/shop/ShopManager';
+import ShopProducts from './layout/pages/shop/ShopProducts';
+import AddNewProduct from './layout/pages/shop/AddNewProduct';
 
 function App() {
   return (
@@ -10,6 +13,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout></Layout>}>
           <Route path='' element={<Home></Home>}></Route>
+          <Route path='shop' element={<ShopManager></ShopManager>}>
+            <Route path='' element={<ShopProducts></ShopProducts>}></Route>
+            <Route path='add' element={<AddNewProduct></AddNewProduct>}></Route>
+          </Route>
         </Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

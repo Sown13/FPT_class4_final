@@ -34,10 +34,10 @@ export default function Header() {
                         </button>
                         <div className="collapse navbar-collapse d-flex justify-content-start" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
-                                <a className="nav-link active" aria-current="page" href="#">{translation.SellerCentre}</a>
-                                <a className="nav-link active" href="#">
+                                <Link className="nav-link active" aria-current="page" to="/shop">{translation.SellerCentre}</Link>
+                                <Link className="nav-link active" to="/shop">
                                     {translation.StartSelling}
-                                </a>
+                                </Link>
                                 <a className="nav-link active" href="#">
                                     {translation.Download}
                                 </a>
@@ -82,12 +82,12 @@ export default function Header() {
             </div>
             <div className="header-with-search-bar d-flex justify-content-center p-2">
                 <div className="navbar2-size row">
-                    <div className="col-2 d-flex align-self-center">
+                    <Link to="/" className="col-2 d-flex align-self-center shopmee-logo">
                         <div className="align-bottom" style={{ paddingRight: "5px" }}>
                             <i class="fa-solid fa-bag-shopping fa-2xl" style={{ fontSize: "45px" }}></i>
                         </div>
                         <h4>Shopmee</h4>
-                    </div>
+                    </Link>
                     <div className="container-fluid col-9">
                         <form className="d-flex form-style" role="search">
                             <input className="form-control me-2" type="search" placeholder={translation.Search} aria-label="Search" style={{border: "0"}}/>
