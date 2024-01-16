@@ -19,7 +19,7 @@ export default function Home() {
             <div className="row">
                 {productList.map((product, index) => (
                     product.isActive &&
-                    (<Link className="col-lg-2 col-md-4 col-sm-12" style={{ marginBottom: "10px", textDecoration: "none" }} key={index}>
+                    (<Link className="col-lg-2 col-md-4 col-sm-12" style={{ marginBottom: "10px", textDecoration: "none" , paddingRight:"0"}} key={index}>
                         <Product product={product}> </Product>
                     </Link>)
                 ))}

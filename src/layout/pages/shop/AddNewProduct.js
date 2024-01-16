@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FormAddProduct from "./FormAddProduct";
 
 export default function AddNewProduct() {
     const [isDisplayFormAdd, setIsDisplayFormAdd] = useState(false);
@@ -7,6 +8,8 @@ export default function AddNewProduct() {
             setIsDisplayFormAdd(false);
         } else { setIsDisplayFormAdd(true); }
     }
+
+    const currentUser = "sonson2";
 
     return (
         <div>
@@ -23,9 +26,7 @@ export default function AddNewProduct() {
                 </div>
             </div>
             {isDisplayFormAdd &&
-                <div className="form-control">
-                    <div>Form</div>
-                </div>
+                <FormAddProduct userId={currentUser}></FormAddProduct>
             }
         </div>
     )

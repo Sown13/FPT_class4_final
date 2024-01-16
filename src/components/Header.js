@@ -1,7 +1,7 @@
 import "../css/components/Header.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const width = window.innerWidth; const height = window.innerHeight;
 console.log(`The viewport's width is ${width} and the height is ${height}`);
@@ -9,6 +9,7 @@ console.log(`The viewport's width is ${width} and the height is ${height}`);
 export default function Header() {
     const [language, setLanguage] = useState("ENG");
     const [translation, setTranslation] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("../language/language.json").then(res => {
@@ -19,16 +20,28 @@ export default function Header() {
         }).catch(error => console.error('Error fetching Language', error))
     }, [language])
 
+
     const handleLanguageChange = (newLanguage) => {
         setLanguage(newLanguage);
     }
 
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleInputChange = (e) => {
+        setSearchValue(e.target.value);
+    };
+
+    const handleSubmitSearch = (e) => {
+        e.preventDefault();
+        navigate(`/search/${searchValue}`);
+    }
+
 
     return (
-        <div className="header-wrapper d-flex flex-column mb-3">
-            <div className="nav-bar-wrapper d-flex justify-content-center p-2">
+        <div className="header-wrapper mb-3" >
+            <div className="nav-bar-wrapper d-flex justify-content-center p-2" >
                 <nav className="navbar navbar-expand navbar1-size">
-                    <div className="container-fluid" style={{paddingLeft:"0"}}>
+                    <div className="container-fluid" style={{ paddingLeft: "0" }}>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -48,7 +61,7 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className="container-fluid" style={{paddingRight:"0"}}>
+                    <div className="container-fluid" style={{ paddingRight: "0" }}>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -89,11 +102,11 @@ export default function Header() {
                         <h4>Shopmee</h4>
                     </Link>
                     <div className="container-fluid col-9">
-                        <form className="d-flex form-style" role="search">
-                            <input className="form-control me-2" type="search" placeholder={translation.Search} aria-label="Search" style={{border: "0"}}/>
+                        <form onSubmit={handleSubmitSearch} className="d-flex form-style" role="search">
+                            <input className="form-control me-2" type="search" name="search" onChange={handleInputChange} placeholder={translation.Search} aria-label="Search" style={{ border: "0" }} />
                             <button className="btn btn-outline-success search-button" type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
-                        <div className="d-flex justify-content-around sale" style={{paddingTop:"4px"}}>
+                        <div className="d-flex justify-content-around sale" style={{ paddingTop: "4px" }}>
                             <a className="nav-link" href="#" aria-current="page">Sale 20%</a>
                             <a className="nav-link" href="#" aria-current="page">Sale 40%</a>
                             <a className="nav-link" href="#" aria-current="page">Sale 50%</a>
@@ -104,9 +117,14 @@ export default function Header() {
                             <a className="nav-link" href="#" aria-current="page">FreeShip</a>
                         </div>
                     </div>
-                    <div className="col-1 align-self-center">
-                        <i className="fa-solid fa-cart-shopping fa-2xl"></i>
-                    </div>
+                    <Link className="col-1 align-self-center position-relative" to={"/cart"} style={{ textDecoration: "none", color: "white" }}>
+                        <span class="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{color:"orange",top: '-8px'}} >
+                            99+
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                        <i className="fa-solid fa-cart-shopping fa-2xl">
+                        </i>
+                    </Link>
                 </div>
             </div>
         </div>

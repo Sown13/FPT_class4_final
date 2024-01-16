@@ -72,26 +72,28 @@
       "userId": "sonson1"
     },
     {
-      "name": "Prototype Product 1",
+      "name": "Not 1",
       "price": 200000,
-      "sale": 20,
-      "type": "Daily",
+      "sale": 0,
+      "type": "consumption",
       "description": "none",
       "quantity": 10,
       "isActive": true,
       "userId": "sonson2",
-      "id": 2
+      "id": 2,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
     },
     {
       "name": "Banana",
       "price": 200000,
       "sale": 20,
-      "type": "Daily",
+      "type": "cosmetics",
       "description": "none",
       "quantity": 10,
-      "isActive": true,
+      "isActive": false,
       "userId": "sonson2",
-      "id": 3
+      "id": 3,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
     },
     {
       "name": "Prototype Product 1",
@@ -108,12 +110,13 @@
       "name": "Apple",
       "price": 200000,
       "sale": 0,
-      "type": "Daily",
+      "type": "consumption",
       "description": "none",
       "quantity": 10,
-      "isActive": false,
+      "isActive": true,
       "userId": "sonson2",
-      "id": 5
+      "id": 5,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
     },
     {
       "name": "Potatoes",
@@ -141,34 +144,132 @@
       "name": "Tomato",
       "price": 200000,
       "sale": 0,
-      "type": "Daily",
+      "type": "clothes",
       "description": "none",
       "quantity": 10,
       "isActive": true,
       "userId": "sonson2",
-      "id": 8
+      "id": 8,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
     },
     {
       "name": "T-shirt",
       "price": 200000,
       "sale": 50,
-      "type": "Daily",
+      "type": "cosmetics",
       "description": "none",
       "quantity": 10,
       "isActive": false,
       "userId": "sonson2",
-      "id": 9
+      "id": 9,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
     },
     {
       "name": "Prototype Product 1",
       "price": 200000,
       "sale": 40,
-      "type": "Daily",
+      "type": "consumption",
       "description": "none",
       "quantity": 10,
       "isActive": true,
       "userId": "sonson2",
-      "id": 10
+      "id": 10,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960"
+    },
+    {
+      "name": "san pham thu nghiem",
+      "price": 123241,
+      "sale": 12,
+      "type": "consumption",
+      "description": "Khong co gi de noi",
+      "quantity": 12,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 11
+    },
+    {
+      "name": "Test",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 1,
+      "sale": 1,
+      "type": "cosmetics",
+      "description": "1",
+      "quantity": 1,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 12
+    },
+    {
+      "name": "1",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 2,
+      "sale": 2,
+      "type": "cosmetics",
+      "description": "1",
+      "quantity": 2,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 13
+    },
+    {
+      "name": "test message",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 1,
+      "sale": 1,
+      "type": "clothes",
+      "description": "1",
+      "quantity": 1,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 14
+    },
+    {
+      "name": "test message 2",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 1,
+      "sale": 0,
+      "type": "consumption",
+      "description": "",
+      "quantity": 1,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 15
+    },
+    {
+      "name": "1",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 2,
+      "sale": 0,
+      "type": "consumption",
+      "description": "",
+      "quantity": 1,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 16
+    },
+    {
+      "name": "123",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 1,
+      "sale": 0,
+      "type": "cosmetics",
+      "description": "",
+      "quantity": 1,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 17
+    },
+    {
+      "name": "test 100",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 12,
+      "sale": 0,
+      "type": "clothes",
+      "description": "123",
+      "quantity": 12,
+      "isActive": true,
+      "userId": "sonson2",
+      "id": 18
     }
   ],
   "comments": []

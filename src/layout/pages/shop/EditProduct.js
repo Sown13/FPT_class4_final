@@ -1,27 +1,27 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import ProductService from "../../../service/ProductService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-export default function FormAddProduct({userId }) {
+export default function EditProduct(props) {
     const [isSuccess, setIsSuccess] = useState(false);
-    const resetMessage = () => {
-        setIsSuccess(false);
-        console.log(isSuccess);
-    }
 
+    const location = useLocation();
+    const { product } = location.state || {};
 
     const initialValues = {
-        name: "",
-        imageUrl: "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
-        price: "",
-        sale: 0,
-        type: "",
-        description: "",
-        quantity: "",
-        isActive: true,
-        userId: userId,
+        id: product?.id,
+        name: product?.name || "",
+        imageUrl: product?.imageUrl || "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+        price: product?.price || "",
+        sale: product?.sale || "",
+        type: product?.type || "",
+        description: product?.description || "",
+        quantity: product?.quantity || "",
+        isActive: product?.isActive || false,
     };
+
 
 
     const validationSchema = Yup.object({
@@ -40,25 +40,24 @@ export default function FormAddProduct({userId }) {
 
 
     const handleSubmit = (values, { resetForm }) => {
-        ProductService.addProduct(values)
+        console.log(values);
+        console.log(values.id);
+        ProductService.updateProduct(values)
             .then((res) => {
-                console.log("add success", res.data);
-                resetForm();
+                console.log("update success", res.data);
                 setIsSuccess(true);
             }).catch((err) => { console.log("Can not add product", err) });
-        console.log(values);
-
     };
 
     return (
         <div style={{ marginBottom: "30px" }}>
-            <h3>Add Product</h3>
+            <h3>Update Product {product ? product.id : ""}</h3>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                <Form onBlur={resetMessage}>
+                <Form>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">
                             Name
@@ -122,11 +121,11 @@ export default function FormAddProduct({userId }) {
                         </label>
                     </div>
                     <button type="submit" className="btn btn-primary">
-                        Submit
+                        Save
                     </button>
                 </Form>
             </Formik>
-            {isSuccess && (<div>Added Successful</div>)}
+            {isSuccess && (<div>Update Successful</div>)}
         </div>
     );
 }

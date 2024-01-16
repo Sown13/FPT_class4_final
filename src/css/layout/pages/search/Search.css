@@ -1,0 +1,3 @@
+.search-price input[type="range"]::-webkit-slider-runnable-track {
+    background-color: blue;
+}
