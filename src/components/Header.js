@@ -99,7 +99,7 @@ export default function Header() {
                                     </ul>
                                 </div>
                                 {currentUser !== null && <div className="nav-link active"> {currentUser.firstname} </div>}
-                                {currentUser !== null && <button className="btn btn-danger nav-link" onClick={logout}>Log Out</button>}
+                                {currentUser !== null && <button className="btn btn-danger nav-link" onClick={logout}>{translation.Logout}</button>}
                                 {currentUser === null && <Link className="nav-link active" to="/signup" aria-current="page" style={{ fontWeight: "600" }}>{translation.SignUp}</Link>}
                                 {currentUser === null && <Link className="nav-link active" to="/login" aria-current="page" style={{ fontWeight: "600" }}>{translation.Login}</Link>}
                             </div>

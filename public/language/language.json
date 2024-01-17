@@ -9,7 +9,8 @@
         "Languages": "Languages",
         "SignUp": "Sign Up",
         "Login": "Login",
-        "Search" : "Search"
+        "Search" : "Search",
+        "Logout" : "Logout"
     },
     "Vietnamese": {
         "SellerCentre": "Kênh người bán",
@@ -21,6 +22,7 @@
         "Languages": "Ngôn ngữ",
         "SignUp": "Đăng ký",
         "Login": "Đăng nhập",
-        "Search": "Tìm sản phẩm"
+        "Search": "Tìm sản phẩm",
+        "Logout" : "Đăng xuất"
     }
 }

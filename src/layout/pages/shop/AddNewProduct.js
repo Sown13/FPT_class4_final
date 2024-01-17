@@ -9,7 +9,11 @@ export default function AddNewProduct() {
         } else { setIsDisplayFormAdd(true); }
     }
 
-    const currentUser = "sonson2";
+    let currentUserId;
+    if (localStorage.getItem('currentUser') !== null) {
+        const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUserId = loggedUser.id;
+    };
 
     return (
         <div>
@@ -26,7 +30,7 @@ export default function AddNewProduct() {
                 </div>
             </div>
             {isDisplayFormAdd &&
-                <FormAddProduct userId={currentUser}></FormAddProduct>
+                <FormAddProduct userId={currentUserId}></FormAddProduct>
             }
         </div>
     )

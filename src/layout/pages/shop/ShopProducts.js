@@ -5,10 +5,15 @@ import { Link, Outlet } from "react-router-dom";
 
 export default function ShopProducts() {
     const [productList, setProductList] = useState([]);
-    const userTest = "sonson2"
+    const [currentUser, setCurrentUser] = useState(null);
 
+    let currentUserId;
+    if (localStorage.getItem('currentUser') !== null) {
+        const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUserId = loggedUser.id;
+    };
     const fetchProductsData = () => {
-        ProductService.getProductsByUser(userTest).then((res) => {
+        ProductService.getProductsByUser(currentUserId).then((res) => {
             setProductList(res.data);
         }).catch((err) => { console.error("Failed to fetch ", err) });
     }
