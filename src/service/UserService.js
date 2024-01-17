@@ -1,6 +1,10 @@
 import http from "./httpCommon";
 
 
+const getUsers = () => {
+    return http.get("/users");
+}
+
 const checkUser = (username) => {
     return http.get("/users/" + username);
 }
@@ -10,6 +14,7 @@ const signup = (userInfo) => {
 }
 
 const UserService = {
+    getUsers,
     checkUser,
     signup
 }

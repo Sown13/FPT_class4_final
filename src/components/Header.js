@@ -104,7 +104,7 @@ export default function Header() {
                     <div className="container-fluid col-9">
                         <form onSubmit={handleSubmitSearch} className="d-flex form-style" role="search">
                             <input className="form-control me-2" type="search" name="search" onChange={handleInputChange} placeholder={translation.Search} aria-label="Search" style={{ border: "0" }} />
-                            <button className="btn btn-outline-success search-button" type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button className="btn btn-outline-success search-button" type="submit" ><i className="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <div className="d-flex justify-content-around sale" style={{ paddingTop: "4px" }}>
                             <a className="nav-link" href="#" aria-current="page">Sale 20%</a>
@@ -118,9 +118,9 @@ export default function Header() {
                         </div>
                     </div>
                     <Link className="col-1 align-self-center position-relative" to={"/cart"} style={{ textDecoration: "none", color: "white" }}>
-                        <span class="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{color:"orange",top: '-8px'}} >
+                        <span className="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{color:"orange",top: '-8px'}} >
                             99+
-                            <span class="visually-hidden">unread messages</span>
+                            <span className="visually-hidden">unread messages</span>
                         </span>
                         <i className="fa-solid fa-cart-shopping fa-2xl">
                         </i>

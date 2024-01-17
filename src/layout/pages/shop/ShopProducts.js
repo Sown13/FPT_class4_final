@@ -59,7 +59,7 @@ export default function ShopProducts() {
                     {productList.map((product, index) => (
                         <tr key={index}>
                             <th scope="row">{index + 1}</th>
-                            <td>{product.name}</td>
+                            <td><Link to={"/product/" + product.id}><i className="fa-solid fa-eye"></i></Link> {product.name} </td>
                             <td>URL</td>
                             <td>{product.type}</td>
                             <td>{product.description}</td>

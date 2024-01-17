@@ -9,6 +9,7 @@ import AddNewProduct from './layout/pages/shop/AddNewProduct';
 import EditProduct from './layout/pages/shop/EditProduct';
 import Search from './layout/pages/search/Search';
 import Cart from './layout/pages/cart/Cart';
+import ProductDetail from './layout/pages/product/ProductDetail';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout></Layout>}>
           <Route path='' element={<Home></Home>}></Route>
+          <Route path='product/:productId' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='shop' element={<ShopManager></ShopManager>}>
             <Route path='' element={<ShopProducts></ShopProducts>}></Route>
             <Route path='add' element={<AddNewProduct></AddNewProduct>}></Route>

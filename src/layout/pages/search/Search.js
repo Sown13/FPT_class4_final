@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ProductService from "../../../service/ProductService";
 import "../../../css/layout/pages/search/Search.css";
+import UserService from "../../../service/UserService";
 
 export default function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [displaySearchResult, setDisplaySearchResult] = useState([]);
-    const [searchShopResult, setSearchShopResult] = useState([]);
+    const [shopSearchResult, setShopSearchResult] = useState([]);
     const { search } = useParams();
 
     useEffect(() => {
         ProductService.getProducts().then(res => {
             const originProductList = res.data;
-            const activeProductList = originProductList.filter(product =>product.isActive);
+            const activeProductList = originProductList.filter(product => product.isActive);
             console.log("Original product list:" + originProductList);
             setSearchResult(originProductList);
             if (search === null || search === "" || search === undefined) {
@@ -22,7 +23,20 @@ export default function Search() {
                 setDisplaySearchResult(tempSearchResult);
             }
         }).catch(error => console.error('Failed to get search result', error))
-            .then((res) => {
+            .then(() => {
+                UserService.getUsers().then(res => {
+                    const searchResult = res.data;
+                    console.log("Search shop result:" + searchResult);
+                    if (search === null || search === "" || search === undefined) {
+                        setShopSearchResult(searchResult);
+                        console.log("Shop result 1:" + JSON.stringify(searchResult));
+                    } else {
+                        const tempResult = searchResult.filter(user => user.shopName.toLowerCase().includes(search.toLocaleLowerCase()));
+                        setShopSearchResult(tempResult);
+                        console.log("Shop result 1:" + searchResult);
+                    }
+
+                }).catch(error => console.error('Failed to get search shop result', error))
             })
             .catch(error => console.error('Failed to get search result', error))
     }, [search])
@@ -34,19 +48,52 @@ export default function Search() {
     const [type, setType] = useState([
         "consumption", "cosmetics", "clothes"
     ]);
+    const [sort, setSort] = useState("");
     const [displayShop, setDisplayShop] = useState(true);
     const [displayProductList, setDisplayProductList] = useState(true);
 
+
     const searchProduct = () => {
-        let tempSearchResult = searchResult;
+        let tempSearchResult = [...searchResult];
         if (maxPrice > 0) {
             tempSearchResult = searchResult.filter(product => product.price >= minPrice && product.price <= maxPrice)
         } else tempSearchResult = searchResult.filter(product => product.price >= minPrice);
         tempSearchResult = tempSearchResult
             .filter(product => product.sale >= minSale && product.sale <= maxSale)
             .filter(product => type.includes(product.type));
+        console.log("sort type:" + sort);
+        switch (sort) {
+            case "priceDown":
+                tempSearchResult.sort((product1, product2) => product2.price * (100 - product2.sale) / 100 - product1.price * (100 - product1.sale) / 100);
+                break;
+            case "priceUp":
+                tempSearchResult.sort((product1, product2) => product1.price * (100 - product1.sale) / 100 - product2.price * (100 - product2.sale) / 100);
+                break;
+            case "saleDown":
+                tempSearchResult.sort((product1, product2) => product2.sale - product1.sale);
+                break;
+            case "saleUp":
+                tempSearchResult.sort((product1, product2) => product2.sale - product1.sale);
+                break;
+            default: break;
+        }
         setDisplaySearchResult(tempSearchResult);
     }
+
+    const activeShopOption = (e) => {
+        if (e.target.checked) {
+            setDisplayShop(true);
+        } else
+            setDisplayShop(false);
+    }
+
+    const activeProductOption = (e) => {
+        if (e.target.checked) {
+            setDisplayProductList(true);
+        } else
+            setDisplayProductList(false);
+    }
+
     const handleInputChange = (e, inputName, value) => {
         switch (inputName) {
             case 'minPrice': setMinPrice(value);
@@ -63,15 +110,17 @@ export default function Search() {
                 setType((prevType) => prevType.filter((item) => item !== value));
             };
                 break;
+            case "sort": setSort(value);
+                break;
             default:
                 break;
         };
     }
 
     useEffect(() => {
-        console.log('input changed');
+        console.log("sort type:" + sort);
         searchProduct();
-    }, [minPrice, maxPrice, minSale, maxSale, type])
+    }, [minPrice, maxPrice, minSale, maxSale, type, sort])
 
     return (
         <div className="row" style={{ marginBottom: "20px" }}>
@@ -80,13 +129,13 @@ export default function Search() {
                 <div>
                     <h6>Search Option</h6>
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="search-shop" />
+                        <input className="form-check-input" type="checkbox" value="" id="search-shop" defaultChecked onChange={(e) => activeShopOption(e)} />
                         <label className="form-check-label" htmlFor="search-shop">
                             Shop
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="search-product" />
+                        <input className="form-check-input" type="checkbox" value="" id="search-product" defaultChecked onChange={(e) => activeProductOption(e)} />
                         <label className="form-check-label" htmlFor="search-product">
                             Product
                         </label>
@@ -204,16 +253,58 @@ export default function Search() {
                 {displayShop && (
                     <div>
                         <h3>Shop related to search</h3>
+                        {shopSearchResult.map((shop, index) => (
+                            <div className="card" key={index}>
+                                <div className="row no-gutters">
+                                    <div className="col-md-4">
+                                        <img src={shop.shopImg} alt="Shop Image" className="card-img" />
+                                    </div>
+                                    <div className="col-md-8">
+                                        <div className="card-body">
+                                            <h5 className="card-title">{shop.shopName}</h5>
+                                            <p className="card-text"><strong>Shop owner: </strong>{shop.lastname} {shop.firstname}</p>
+                                            <p className="card-text">Phone: {shop.phone}</p>
+                                            <p className="card-text"><strong>Email:</strong> {shop.email}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )}
                 {displayProductList && (
                     <div>
                         <h3>Product related to search</h3>
-                        {displaySearchResult.map((product, index) => (
-                            <div key={index}>
-                                {product.name}
-                            </div>
-                        ))}
+                        <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, 'sort', e.target.value)}>
+                            <option selected >Sort</option>
+                            <option value="priceDown">Sort By Price DESC<i className="fa-solid fa-arrow-up"></i></option>
+                            <option value="priceUp">Sort By Price ASC<i className="fa-solid fa-arrow-down"></i></option>
+                            <option value="saleDown">Sort By Sale DESC</option>
+                            <option value="saleUp">Sort By Sale ASC</option>
+                        </select>
+                        <div className="row">
+                            {displaySearchResult.map((product, index) => (
+                                <Link to={"/product/" + product.id} className="card col-4" key={index} style={{ textDecoration: "none", marginBottom:"10px", boxSizing:"border-box" }}>
+                                    <div className="no-gutters">
+                                        <div className="col-md-12">
+                                            <img src={product.imageUrl} alt="Product" className="card-img" />
+                                        </div>
+                                        <div className="col-md-12">
+                                            <div className="card-body">
+                                                <h5 className="card-title">{product.name}</h5>
+                                                <p className="card-text"><strong>Type: </strong>{product.type}</p>
+                                                <p className="card-text">{product.description}</p>
+                                                {product.sale > 0
+                                                    ? (<p className="card-text"><strong>Price:</strong> <del>{product.price}</del> - {product.sale}% =&gt; <span>{product.price * (100 - product.sale) / 100}$ </span></p>)
+                                                    : (<p className="card-text"><strong>Price:</strong> {product.price}</p>)}
+
+                                                <p className="card-text"><strong>Quantity Left:</strong> {product.quantity}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
