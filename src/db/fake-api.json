@@ -54,18 +54,6 @@
       "quantity": 10
     },
     {
-      "id": 4,
-      "userId": "admin",
-      "productId": 1,
-      "quantity": 2
-    },
-    {
-      "userId": "sonson2",
-      "productId": 1,
-      "quantity": 1,
-      "id": 15
-    },
-    {
       "userId": "sonson2",
       "productId": 1,
       "quantity": 1,
@@ -94,12 +82,6 @@
       "productId": 1,
       "quantity": 1,
       "id": 20
-    },
-    {
-      "userId": "sonson2",
-      "productId": 6,
-      "quantity": 1,
-      "id": 23
     },
     {
       "userId": "sonson2",
@@ -172,6 +154,42 @@
       "productId": 1,
       "quantity": 1,
       "id": 40
+    },
+    {
+      "userId": "sonson2",
+      "productId": 2,
+      "quantity": 1,
+      "id": 41
+    },
+    {
+      "userId": "sonson2",
+      "productId": 2,
+      "quantity": 1,
+      "id": 42
+    },
+    {
+      "userId": "admin",
+      "productId": 3,
+      "quantity": 1,
+      "id": 43
+    },
+    {
+      "userId": "admin",
+      "productId": 3,
+      "quantity": 1,
+      "id": 44
+    },
+    {
+      "userId": "admin",
+      "productId": 2,
+      "quantity": 1,
+      "id": 45
+    },
+    {
+      "userId": "admin",
+      "productId": 2,
+      "quantity": 1,
+      "id": 46
     }
   ],
   "products": [

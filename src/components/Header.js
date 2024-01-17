@@ -10,8 +10,14 @@ export default function Header() {
     const [language, setLanguage] = useState("ENG");
     const [translation, setTranslation] = useState({});
     const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
+        if (localStorage.getItem('currentUser') !== null) {
+            const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+            console.log(loggedUser.firstname);
+            setCurrentUser(loggedUser);
+        };
         axios.get("../language/language.json").then(res => {
             console.log(`loading`);
             if (language === "ENG") {
@@ -36,6 +42,12 @@ export default function Header() {
         navigate(`/search/${searchValue}`);
     }
 
+    const logout = () => {
+        if (localStorage.getItem('currentUser') !== null) {
+            localStorage.removeItem('currentUser');
+            navigate(`/login`);
+        }
+    }
 
     return (
         <div className="header-wrapper mb-3" >
@@ -86,8 +98,10 @@ export default function Header() {
                                         </li>
                                     </ul>
                                 </div>
-                                <Link className="nav-link active" to="/signup" aria-current="page" style={{ fontWeight: "600" }}>{translation.SignUp}</Link>
-                                <Link className="nav-link active" to="/login" aria-current="page" style={{ fontWeight: "600" }}>{translation.Login}</Link>
+                                {currentUser !== null && <div className="nav-link active"> {currentUser.firstname} </div>}
+                                {currentUser !== null && <button className="btn btn-danger nav-link" onClick={logout}>Log Out</button>}
+                                {currentUser === null && <Link className="nav-link active" to="/signup" aria-current="page" style={{ fontWeight: "600" }}>{translation.SignUp}</Link>}
+                                {currentUser === null && <Link className="nav-link active" to="/login" aria-current="page" style={{ fontWeight: "600" }}>{translation.Login}</Link>}
                             </div>
                         </div>
                     </div>
@@ -118,7 +132,7 @@ export default function Header() {
                         </div>
                     </div>
                     <Link className="col-1 align-self-center position-relative" to={"/cart"} style={{ textDecoration: "none", color: "white" }}>
-                        <span className="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{color:"orange",top: '-8px'}} >
+                        <span className="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{ color: "orange", top: '-8px' }} >
                             99+
                             <span className="visually-hidden">unread messages</span>
                         </span>

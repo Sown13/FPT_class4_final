@@ -1,30 +1,36 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ProductService from "../../../service/ProductService";
 import CartService from "../../../service/CartService";
 
 export default function ProductDetail() {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
-    const currentUser = "sonson2";
-    const productDataToAdd = {
-        userId: currentUser,
-        productId: product.id,
-        quantity: 1
-    }
-
+    const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (localStorage.getItem('currentUser') !== null) {
+            const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+            console.log(loggedUser.firstname);
+            setCurrentUser(loggedUser);
+        };
         ProductService.getProductById(productId).then((res) => {
             setProduct(res.data);
         }).catch(error => console.error('Failed to get product detail', error))
     }, [productId])
 
     const addToCart = () => {
-        console.log(productDataToAdd);
-        CartService.addProductToCart(productDataToAdd).then(() => {
-            alert(`Added Successfully!`);
-        }).catch(error => console.error('Failed to get product detail', error));
+        if (currentUser !== null) {
+            const productDataToAdd = {
+                userId: currentUser.id,
+                productId: product.id,
+                quantity: 1
+            }
+            CartService.addProductToCart(productDataToAdd).then(() => {
+                alert(`Added Successfully!` + JSON.stringify(productDataToAdd));
+            }).catch(error => console.error('Failed to get product detail', error));
+        } else { navigate("/login") }
     }
 
     return (

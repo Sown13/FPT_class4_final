@@ -1,13 +1,14 @@
 import Footer from "../components/Footer";
 import HeaderLogin from "./HeaderLogin";
 import "../css/auth/Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import UserService from "../service/UserService";
 
 export default function Login() {
+    const navigate = useNavigate();
 
     const initialValues = {
         username: "",
@@ -18,10 +19,10 @@ export default function Login() {
         const validate = (values) => {
             let isValid = true;
             if (values.username === "" || values.username === null) {
-                console.log("Please enter a username");
+                alert("Please enter a username");
                 isValid = false;
             } else if (values.password === "" || values.password === null) {
-                console.log("Please enter a password");
+                alert("Please enter a password");
                 isValid = false;
             }
             return isValid;
@@ -31,9 +32,11 @@ export default function Login() {
                 const tempUser = res.data;
                 console.log(tempUser);
                 if (tempUser.password === values.password) {
-                    console.log("Login successful");
-                } else { console.log("Wrong password") }
-            }).catch((err) => { console.error('User not exist', err) });
+                    localStorage.setItem("currentUser", JSON.stringify(tempUser));
+                    alert("Login successful");
+                    navigate("/");
+                } else { alert("Wrong password") }
+            }).catch((err) => { alert('User not exist') });
         }
     }
 
