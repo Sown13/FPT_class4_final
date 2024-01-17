@@ -50,7 +50,7 @@ export default function ProductDetail() {
                     <div>Price: {product.price}</div>
                     <div>Quantity Left: {product.quantity}</div>
                     <div>Quantity Sold: xxx</div>
-                    <button class="btn btn-primary" type="button" onClick={addToCart}>Add to cart</button>
+                    <button class="btn btn-danger" type="button" onClick={addToCart}>Add to cart</button>
                 </div>
             </div>
         </div>

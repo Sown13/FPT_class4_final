@@ -251,7 +251,7 @@ export default function Cart() {
                     <div className="col-10">
                         <div className="row">
                             <h3 className="col-4">Total price: <span style={{ color: "red" }}>{totalPrice}$</span> </h3>
-                            <button className="btn btn-primary col-7" > Pay </button>
+                            <button className="btn btn-danger col-7" > Pay </button>
 
                         </div>
                         <div>
@@ -272,7 +272,7 @@ export default function Cart() {
                                         <div className="col-md-8">
                                             <div className="card-body">
                                                 <div className="position-relative">
-                                                    <button className="btn btn-danger close position-absolute top-0 end-0" aria-label="Close" onClick={() => removeFromCart(product.id)}>
+                                                    <button className="btn btn-secondary close position-absolute top-0 end-0" aria-label="Close" onClick={() => removeFromCart(product.id)}>
                                                         <span aria-hidden="true">Remove</span>
                                                     </button>
                                                 </div>

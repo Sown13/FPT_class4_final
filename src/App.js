@@ -10,6 +10,7 @@ import EditProduct from './layout/pages/shop/EditProduct';
 import Search from './layout/pages/search/Search';
 import Cart from './layout/pages/cart/Cart';
 import ProductDetail from './layout/pages/product/ProductDetail';
+import UserDetail from './layout/pages/user/UserDetail';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='cart' element={<Cart></Cart>}></Route>
           <Route path='search/:search' element={<Search></Search>}></Route>
           <Route path='search/' element={<Search></Search>}></Route>
+          <Route path='/user' element={<UserDetail></UserDetail>}></Route>
         </Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
