@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductService from "../../../service/ProductService";
 import Product from "../../../components/Product";
 import { Link, Outlet } from "react-router-dom";
 import "../../../css/layout/pages/ShopManager.css";
+import { UserContext } from "../../../context/Context";
 
 export default function ShopManager() {
     const [tabActive, setTabActive] = useState(1);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const selectTab = (number) => {
         setTabActive(number);

@@ -40,6 +40,7 @@ export default function ShopProducts() {
             })
             .catch((err) => { console.error("Failed to delete product ", err) });
     }
+    
 
     return (
         <div>

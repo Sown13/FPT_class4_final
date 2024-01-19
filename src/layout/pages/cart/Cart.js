@@ -270,7 +270,7 @@ export default function Cart() {
                     </div>
                     <div className="col-10">
                         <div className="row">
-                            <h3 className="col-4">Total price: <span style={{ color: "red" }}>{totalPrice}$</span> </h3>
+                            <h3 className="col-4">Total price: <span style={{ color: "red" }}>{totalPrice && totalPrice.toLocaleString()}$</span> </h3>
                             <button className="btn btn-danger col-7" > Pay </button>
 
                         </div>

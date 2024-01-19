@@ -61,9 +61,9 @@
       "phone": "",
       "role": "USER",
       "currentRole": "NONE",
-      "shopName": "",
-      "shopImg": "",
-      "isShopActive": false
+      "shopName": "Shop Test",
+      "shopImg": "https://scontent.fhan14-4.fna.fbcdn.net/v/t45.5328-4/418858305_5496991390425073_6392094605579736765_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFhboDmYo4Gn1Fyp6hzxbyGXGxXcNLjLDZcbFdw0uMsNkIbjAStqZ_7BuSsb7CVOAkHGc3TksUc4rbynYa3zqfO&_nc_ohc=EeVhzV_F2okAX9CNA6b&_nc_ht=scontent.fhan14-4.fna&oh=00_AfCHlf2_BkKQ0x03-n-da6Z5m0b90-g4YW-zNrPJJSunMQ&oe=65AF6C1A",
+      "isShopActive": true
     }
   ],
   "carts": [
@@ -72,6 +72,18 @@
       "productId": 4,
       "quantity": 1,
       "id": 1
+    },
+    {
+      "userId": "usertest",
+      "productId": 4,
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "userId": "usertest",
+      "productId": 9,
+      "quantity": 1,
+      "id": 4
     }
   ],
   "products": [
