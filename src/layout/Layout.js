@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../css/layout/Layout.css";
@@ -30,8 +30,19 @@ export default function Layout() {
         }
     }, [currentUserId])
 
+    const ScrollToTop = () => {
+        const { pathname } = useLocation();
+
+        useEffect(() => {
+            window.scrollTo(0, 0);
+        }, [pathname]);
+
+        return null;
+    };
+
     return (
         <div>
+            <ScrollToTop />
             <UserContext.Provider value={{ currentUser, setCurrentUser, cartCount, setCartCount }}>
                 <Header></Header>
                 <div className="d-flex justify-content-center">

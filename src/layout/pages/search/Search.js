@@ -124,7 +124,7 @@ export default function Search() {
 
     return (
         <div className="row" style={{ marginBottom: "20px" }}>
-            <div className="col-2" style={{ backgroundColor: "#f5f5f5" }}>
+            <div className="col-2" style={{ backgroundColor: "#f5f5f5", position: "sticky", top: "130px", height: "500px" }}>
                 <h3>Search Filter</h3>
                 <div>
                     <h6>Search Option</h6>
@@ -251,20 +251,30 @@ export default function Search() {
             </div>
             <div className="col-10">
                 {displayShop && (
-                    <div>
+                    <div className="">
                         <h3>Shop related to search</h3>
                         {shopSearchResult.map((shop, index) => (
-                            <div className="card" key={index}>
+                            <div className="card mb-3" key={index}>
                                 <div className="row no-gutters">
                                     <div className="col-md-4">
-                                        <img src={shop.shopImg} alt="Shop Image" className="card-img" />
+                                        <img
+                                            src={shop.shopImg}
+                                            alt="Shop Image"
+                                            className="card-img img-fluid"
+                                            style={{ maxHeight: "168px", objectFit: "cover" }}
+                                        />
                                     </div>
                                     <div className="col-md-8">
                                         <div className="card-body">
                                             <h5 className="card-title">{shop.shopName}</h5>
-                                            <p className="card-text"><strong>Shop owner: </strong>{shop.lastname} {shop.firstname}</p>
+                                            <p className="card-text">
+                                                <strong>Shop owner: </strong>
+                                                {shop.lastname} {shop.firstname}
+                                            </p>
                                             <p className="card-text">Phone: {shop.phone}</p>
-                                            <p className="card-text"><strong>Email:</strong> {shop.email}</p>
+                                            <p className="card-text">
+                                                <strong>Email:</strong> {shop.email}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -284,20 +294,21 @@ export default function Search() {
                         </select>
                         <div className="row">
                             {displaySearchResult.map((product, index) => (
-                                <Link to={"/product/" + product.id} className="card col-4" key={index} style={{ textDecoration: "none", marginBottom:"10px", boxSizing:"border-box" }}>
+                                <Link to={"/product/" + product.id} className="card col-4 d-flex flex-column" key={index} style={{ textDecoration: "none", marginBottom: "10px", boxSizing: "border-box", height: "100%" }}>
                                     <div className="no-gutters">
-                                        <div className="col-md-12">
-                                            <img src={product.imageUrl} alt="Product" className="card-img" />
+                                        <div className="col-md-12 flex-grow-1">
+                                            <div className="card-img-top" style={{ backgroundImage: `url(${product.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center", height: "0", paddingBottom: "100%" }}></div>
                                         </div>
                                         <div className="col-md-12">
                                             <div className="card-body">
-                                                <h5 className="card-title">{product.name}</h5>
+                                                <h5 className="card-title text-truncate">{product.name}</h5>
                                                 <p className="card-text"><strong>Type: </strong>{product.type}</p>
-                                                <p className="card-text">{product.description}</p>
-                                                {product.sale > 0
-                                                    ? (<p className="card-text"><strong>Price:</strong> <del>{product.price}</del> - {product.sale}% =&gt; <span>{product.price * (100 - product.sale) / 100}$ </span></p>)
-                                                    : (<p className="card-text"><strong>Price:</strong> {product.price}</p>)}
-
+                                                <p className="card-text text-truncate">{product.description}</p>
+                                                {product.sale > 0 ? (
+                                                    <p className="card-text"><strong>Price:</strong> <del>{product.price}</del> - {product.sale}% =&gt; <span>{(product.price * (100 - product.sale) / 100).toLocaleString()}$</span></p>
+                                                ) : (
+                                                    <p className="card-text"><strong>Price:</strong> {product.price.toLocaleString()}</p>
+                                                )}
                                                 <p className="card-text"><strong>Quantity Left:</strong> {product.quantity}</p>
                                             </div>
                                         </div>

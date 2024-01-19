@@ -14,6 +14,7 @@ import UserDetail from './layout/pages/user/UserDetail';
 import ApplySeller from './layout/pages/shop/ApplySeller';
 
 function App() {
+  
   return (
     <div className="App">
       <Routes>

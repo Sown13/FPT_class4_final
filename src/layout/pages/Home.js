@@ -52,7 +52,7 @@ export default function Home() {
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <h1 class="sticky-top" style={{backgroundColor:"white", borderBottom: "5px solid #f53d2d"}}>All the Products today</h1>
+            <h1 class="" style={{backgroundColor:"white", borderBottom: "5px solid #f53d2d", position:"sticky", top: "119px",  zIndex: "1",}}>Hot Trend Now</h1>
             {/* <div style={{ color: "#f53d2d", height: "4px", backgroundColor: "#f53d2d", marginBottom: "10px" }}></div> */}
             <div className="row">
                 {productList.map((product, index) => (

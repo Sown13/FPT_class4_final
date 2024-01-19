@@ -51,7 +51,7 @@ export default function Header() {
     }
 
     return (
-        <div className="header-wrapper mb-3" >
+        <div className="header-wrapper mb-3 sticky-top" >
             <div className="nav-bar-wrapper d-flex justify-content-center p-2" >
                 <nav className="navbar navbar-expand navbar1-size">
                     <div className="container-fluid" style={{ paddingLeft: "0" }}>

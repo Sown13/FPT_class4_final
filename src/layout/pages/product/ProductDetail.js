@@ -39,24 +39,41 @@ export default function ProductDetail() {
 
     return (
         <div>
-            <div class="container" style={{ marginBottom: "20px" }}>
-                <h1 class="mt-4">{product.name}</h1>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <h3>Description</h3>
-                        <ul>
-                            {product.description}
-                        </ul>
+            {product && (
+                <div class="container" style={{ marginBottom: "20px" }}>
+                    <h1 class="mt-4">{product.name}</h1>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <img
+                                src={product.imageUrl}
+                                alt="Product"
+                                class="img-fluid"
+                                style={{ maxWidth: "400px", maxHeight: "400px" }}
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Description</h3>
+                            <ul>
+                                <li>{product.description}</li>
+                            </ul>
+                            <div>Original Price: {product.price && product.price.toLocaleString()}$</div>
+                            <div>Sale: {product.sale}%</div>
+                            <div>
+                                Sale Price:{" "}
+                                {product.price &&
+                                    (product.price * (100 - product.sale) / 100).toLocaleString()}
+                                $
+                            </div>
+                            <div>Type: {product.type}</div>
+                            <div>Quantity Left: {product.quantity}</div>
+                            <div>Quantity Sold: xxx</div>
+                            <button class="btn btn-danger" type="button" onClick={addToCart}>
+                                Add to cart
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <img src={product.imageUrl} alt="Product" class="img-fluid" />
-                    </div>
-                    <div>Price: {product.price}</div>
-                    <div>Quantity Left: {product.quantity}</div>
-                    <div>Quantity Sold: xxx</div>
-                    <button class="btn btn-danger" type="button" onClick={addToCart}>Add to cart</button>
                 </div>
-            </div>
+            )}
         </div>
     )
 }
