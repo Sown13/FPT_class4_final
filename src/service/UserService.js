@@ -10,13 +10,18 @@ const checkUser = (username) => {
 }
 
 const signup = (userInfo) => {
-    return http.post(userInfo);
+    return http.post("/users",userInfo);
+}
+
+const submitSeller = (user) => {
+    return http.patch(`/users/${user.id}`,user);
 }
 
 const UserService = {
     getUsers,
     checkUser,
-    signup
+    signup,
+    submitSeller
 }
 
 export default UserService;

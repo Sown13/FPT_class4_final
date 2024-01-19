@@ -38,6 +38,61 @@
       "shopName": "FPT Store",
       "shopImg": "",
       "isShopActive": true
+    },
+    {
+      "id": "MWlMUKo"
+    },
+    {
+      "id": "sonson3",
+      "password": "123",
+      "email": "",
+      "firstname": "New",
+      "lastname": "User",
+      "phone": "",
+      "role": "USER",
+      "currentRole": "NONE",
+      "shopName": "My New Shop",
+      "shopImg": "",
+      "isShopActive": true
+    },
+    {
+      "id": "sonson4",
+      "password": "123",
+      "email": "",
+      "firstname": "New User",
+      "lastname": "None",
+      "phone": "",
+      "role": "USER",
+      "currentRole": "NONE",
+      "shopName": "My New Shop sonson4",
+      "shopImg": "",
+      "isShopActive": true
+    },
+    {
+      "id": "sonson5",
+      "password": "123",
+      "email": "",
+      "firstname": "New User",
+      "lastname": "None",
+      "phone": "",
+      "role": "USER",
+      "currentRole": "NONE",
+      "shopName": "test shop",
+      "shopImg": "123",
+      "isShopActive": true
+    },
+    {
+      "id": "sonson6",
+      "password": "123",
+      "email": "",
+      "firstname": "New User",
+      "lastname": "None",
+      "phone": "",
+      "role": "USER",
+      "currentRole": "NONE",
+      "shopName": "123",
+      "shopImg": "123",
+      "isShopActive": true
     }
   ],
   "carts": [
@@ -136,6 +191,36 @@
       "productId": 2,
       "quantity": 1,
       "id": 61
+    },
+    {
+      "userId": "sonson3",
+      "productId": 7,
+      "quantity": 1,
+      "id": 62
+    },
+    {
+      "userId": "sonson3",
+      "productId": 11,
+      "quantity": 1,
+      "id": 63
+    },
+    {
+      "userId": "sonson3",
+      "productId": 11,
+      "quantity": 1,
+      "id": 64
+    },
+    {
+      "userId": "sonson3",
+      "productId": 16,
+      "quantity": 1,
+      "id": 65
+    },
+    {
+      "userId": "sonson3",
+      "productId": 6,
+      "quantity": 1,
+      "id": 66
     }
   ],
   "products": [
@@ -354,6 +439,18 @@
       "isActive": true,
       "userId": "sonson2",
       "id": 18
+    },
+    {
+      "name": "123",
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/news/2023/05/23/TELEMMGLPICT000336809344_16848508364990_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=960",
+      "price": 123,
+      "sale": 10,
+      "type": "cosmetics",
+      "description": "123",
+      "quantity": 10,
+      "isActive": true,
+      "userId": "sonson6",
+      "id": 19
     }
   ],
   "comments": []

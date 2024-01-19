@@ -61,7 +61,7 @@ export default function Header() {
                         <div className="collapse navbar-collapse d-flex justify-content-start" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
                                 <Link className="nav-link active" aria-current="page" to="/shop">{translation.SellerCentre}</Link>
-                                <Link className="nav-link active" to="/shop">
+                                <Link className="nav-link active" to="/start-selling">
                                     {translation.StartSelling}
                                 </Link>
                                 <a className="nav-link active" href="#">

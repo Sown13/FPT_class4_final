@@ -34,8 +34,8 @@ export default function Cart() {
                 //     tempListProduct = [...tempListProduct, productsResult.data.find(product => product.id === listProductId[i])];
                 //     console.log(tempListProduct);
                 // }
-                const tempListProduct = tempCart.map((cart)=>{
-                    return {cartId: cart.id, product: productsResult.data.find(product => product.id === cart.productId)};
+                const tempListProduct = tempCart.map((cart) => {
+                    return { cartId: cart.id, product: productsResult.data.find(product => product.id === cart.productId) };
                 });
                 // console.log("list 2: " + JSON.stringify(tempListProduct));
                 // console.log("list 2 products: " + tempListProduct[1].product);
@@ -76,7 +76,8 @@ export default function Cart() {
         tempFilterResult = tempFilterResult
             .filter(cart => cart.product.sale >= minSale && cart.product.sale <= maxSale)
             .filter(cart => type.includes(cart.product.type));
-            // console.log("Cart tempResult: " + tempFilterResult);
+        console.log("min" + minSale + "max" + maxSale);
+        // console.log("Cart tempResult: " + tempFilterResult);
         switch (sort) {
             case "priceDown":
                 tempFilterResult.sort((cart1, cart2) => cart2.product.price * (100 - cart2.product.sale) / 100 - cart1.product.price * (100 - cart1.product.sale) / 100);
@@ -88,7 +89,7 @@ export default function Cart() {
                 tempFilterResult.sort((cart1, cart2) => cart2.product.sale - cart1.product.sale);
                 break;
             case "saleUp":
-                tempFilterResult.sort((cart1, cart2) => cart2.product.sale - cart1.product.sale);
+                tempFilterResult.sort((cart1, cart2) => cart1.product.sale - cart2.product.sale);
                 break;
             default: break;
         }
@@ -106,7 +107,9 @@ export default function Cart() {
                 break;
             case 'minSale': setMinSale(value);
                 break;
-            case 'maxSale': setMaxSale(value);
+            case 'maxSale':
+                if (value <= 0) { setMaxSale(100) }
+                else setMaxSale(value);
                 break;
             case 'type': if (e.target.checked) {
                 setType((prevType) => [...prevType, value]);

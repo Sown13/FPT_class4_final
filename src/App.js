@@ -11,6 +11,7 @@ import Search from './layout/pages/search/Search';
 import Cart from './layout/pages/cart/Cart';
 import ProductDetail from './layout/pages/product/ProductDetail';
 import UserDetail from './layout/pages/user/UserDetail';
+import ApplySeller from './layout/pages/shop/ApplySeller';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='add' element={<AddNewProduct></AddNewProduct>}></Route>
             <Route path='edit' element={<EditProduct></EditProduct>}></Route>
           </Route>
+          <Route path='start-selling' element={<ApplySeller></ApplySeller>}></Route>
           <Route path='cart' element={<Cart></Cart>}></Route>
           <Route path='search/:search' element={<Search></Search>}></Route>
           <Route path='search/' element={<Search></Search>}></Route>
