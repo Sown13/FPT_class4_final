@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import ProductService from "../../../service/ProductService";
 import CartService from "../../../service/CartService";
+import { UserContext } from "../../../context/Context";
 
 export default function ProductDetail() {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
-    const [currentUser, setCurrentUser] = useState(null);
+    const { currentUser, setCurrentUser, cartCount, setCartCount } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('currentUser') !== null) {
-            const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
-            console.log(loggedUser.firstname);
-            setCurrentUser(loggedUser);
-        };
+        // if (localStorage.getItem('currentUser') !== null) {
+        //     const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        //     console.log(loggedUser.firstname);
+        //     setCurrentUser(loggedUser);
+        // };
         ProductService.getProductById(productId).then((res) => {
             setProduct(res.data);
         }).catch(error => console.error('Failed to get product detail', error))
@@ -29,6 +30,9 @@ export default function ProductDetail() {
             }
             CartService.addProductToCart(productDataToAdd).then(() => {
                 alert(`Added Successfully!` + JSON.stringify(productDataToAdd));
+                const cartCountIncrease = cartCount + 1;
+                console.log("COUNT: " + cartCountIncrease);
+                setCartCount(cartCountIncrease);
             }).catch(error => console.error('Failed to get product detail', error));
         } else { navigate("/login") }
     }

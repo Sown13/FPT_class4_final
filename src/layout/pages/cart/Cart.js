@@ -10,7 +10,7 @@ export default function Cart() {
     const [productsToDisplay, setProductsToDisplay] = useState([]);
     const [totalPrice, setTotalPrice] = useState(null);
     const [cart, setCart] = useState([]);
-    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser, cartCount, setCartCount } = useContext(UserContext);
     let currentUserId;
     if (localStorage.getItem('currentUser') !== null) {
         const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -67,7 +67,7 @@ export default function Cart() {
 
 
     const filterCart = (inputProducts) => {
-        console.log("inputProducts: " + inputProducts);
+        // console.log("inputProducts: " + inputProducts);
         let tempFilterResult;
         if (maxPrice > 0) {
             tempFilterResult = inputProducts.filter(cart => cart.product.price >= minPrice && cart.product.price <= maxPrice)
@@ -76,7 +76,7 @@ export default function Cart() {
         tempFilterResult = tempFilterResult
             .filter(cart => cart.product.sale >= minSale && cart.product.sale <= maxSale)
             .filter(cart => type.includes(cart.product.type));
-            console.log("Cart tempResult: " + tempFilterResult);
+            // console.log("Cart tempResult: " + tempFilterResult);
         switch (sort) {
             case "priceDown":
                 tempFilterResult.sort((cart1, cart2) => cart2.product.price * (100 - cart2.product.sale) / 100 - cart1.product.price * (100 - cart1.product.sale) / 100);
@@ -123,7 +123,7 @@ export default function Cart() {
 
     useEffect(() => {
         filterCart(products);
-        console.log('filtered: display ' + productsToDisplay);
+        // console.log('filtered: display ' + productsToDisplay);
     }, [minPrice, maxPrice, minSale, maxSale, type, sort, products])
 
     // const findCartId = (userId, productId) => {
@@ -134,14 +134,16 @@ export default function Cart() {
 
     const removeFromCart = (cartId) => {
         // const cartId = findCartId(currentUser.id, productId);
-        console.log('cartId to remove: ' + cartId);
+        // console.log('cartId to remove: ' + cartId);
         CartService.removeProductFromCart(cartId).then(
             (res) => {
                 const tempProductList = products.filter(cart => cart.cartId !== cartId);
                 // const tempOutputFilter = filterCart(tempProductList);
-                console.log("tempProductList " + tempProductList);
+                // console.log("tempProductList " + tempProductList);
                 // setProductsToDisplay(tempOutputFilter);
                 setProducts(tempProductList);
+                const cartCountDecrease = cartCount - 1;
+                setCartCount(cartCountDecrease);
             }
         ).catch(err => { console.log(err); });
     }

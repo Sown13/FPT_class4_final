@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import HeaderSignup from "./HeaderSignup";
-import"../css/auth/Signup.css";
+import "../css/auth/Signup.css";
 
 export default function Signup() {
+
+    const navigate = useNavigate();
+    const initialValues = {
+        username: "",
+        password: ""
+    };
+
     return (
         <div>
             <HeaderSignup></HeaderSignup>
