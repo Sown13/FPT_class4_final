@@ -1,7 +1,8 @@
 import "../css/components/Header.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from '../context/Context.js';
 
 const width = window.innerWidth; const height = window.innerHeight;
 console.log(`The viewport's width is ${width} and the height is ${height}`);
@@ -10,14 +11,14 @@ export default function Header() {
     const [language, setLanguage] = useState("ENG");
     const [translation, setTranslation] = useState({});
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState(null);
+    const { currentUser, setCurrentUser, cartCount, setCartCount } = useContext(UserContext);
 
     useEffect(() => {
-        if (localStorage.getItem('currentUser') !== null) {
-            const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
-            console.log(loggedUser.firstname);
-            setCurrentUser(loggedUser);
-        };
+        // if (localStorage.getItem('currentUser') !== null) {
+        //     const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        //     console.log(loggedUser.firstname);
+        //     setCurrentUser(loggedUser);
+        // };
         axios.get("../language/language.json").then(res => {
             console.log(`loading`);
             if (language === "ENG") {
@@ -132,10 +133,12 @@ export default function Header() {
                         </div>
                     </div>
                     <Link className="col-1 align-self-center position-relative" to={"/cart"} style={{ textDecoration: "none", color: "white" }}>
-                        <span className="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{ color: "orange", top: '-8px' }} >
-                            99+
-                            <span className="visually-hidden">unread messages</span>
-                        </span>
+                        {cartCount !== 0
+                            ? <span className="position-absolute start-50 translate-middle badge rounded-pill bg-white text-bg-orange" style={{ color: "orange", top: '-8px' }} >
+                                {cartCount}
+                                <span className="visually-hidden">unread messages</span>
+                            </span>
+                            : <></>}
                         <i className="fa-solid fa-cart-shopping fa-2xl">
                         </i>
                     </Link>

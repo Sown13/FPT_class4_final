@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartService from "../../../service/CartService";
 import ProductService from "../../../service/ProductService";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/Context";
 
 export default function Cart() {
 
@@ -9,7 +10,7 @@ export default function Cart() {
     const [productsToDisplay, setProductsToDisplay] = useState([]);
     const [totalPrice, setTotalPrice] = useState(null);
     const [cart, setCart] = useState([]);
-    const [currentUser, setCurrentUser] = useState(null);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
     let currentUserId;
     if (localStorage.getItem('currentUser') !== null) {
         const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -17,27 +18,33 @@ export default function Cart() {
     };
 
     useEffect(() => {
-        if (localStorage.getItem('currentUser') !== null) {
-            const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
-            console.log(loggedUser.firstname);
-            setCurrentUser(loggedUser);
-        };
+        // if (localStorage.getItem('currentUser') !== null) {
+        //     const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        //     console.log(loggedUser.firstname);
+        //     setCurrentUser(loggedUser);
+        // };
         const fetchData = async () => {
             try {
                 const promises = [CartService.getCarts(currentUserId), ProductService.getProducts()];
                 const [cartResult, productsResult] = await Promise.all(promises);
                 const tempCart = cartResult.data;
-                const listProductId = tempCart.map(product => product.productId);
-                let tempListProduct = [];
-                for (let i = 0; i < listProductId.length; i++) {
-                    tempListProduct = [...tempListProduct, productsResult.data.find(product => product.id === listProductId[i])];
-                    console.log(tempListProduct);
-                }
+                // const listProductId = tempCart.map(cart => cart.productId);
+                // let tempListProduct = [];
+                // for (let i = 0; i < listProductId.length; i++) {
+                //     tempListProduct = [...tempListProduct, productsResult.data.find(product => product.id === listProductId[i])];
+                //     console.log(tempListProduct);
+                // }
+                const tempListProduct = tempCart.map((cart)=>{
+                    return {cartId: cart.id, product: productsResult.data.find(product => product.id === cart.productId)};
+                });
+                // console.log("list 2: " + JSON.stringify(tempListProduct));
+                // console.log("list 2 products: " + tempListProduct[1].product);
+                // let tempListProduct2 = listProductId2.map
 
-                const tempTotalPrice = tempListProduct.reduce((accumulator, product) => {
-                    return accumulator + (product.price * (100 - product.sale) / 100);
+                const tempTotalPrice = tempListProduct.reduce((accumulator, cart) => {
+                    return accumulator + (cart.product.price * (100 - cart.product.sale) / 100);
                 }, 0);
-                console.log(tempListProduct);
+                // console.log(tempListProduct);
                 setCart(tempCart);
                 setProducts(tempListProduct);
                 setProductsToDisplay(tempListProduct);
@@ -59,31 +66,34 @@ export default function Cart() {
     const [sort, setSort] = useState("");
 
 
-    const filterCart = () => {
+    const filterCart = (inputProducts) => {
+        console.log("inputProducts: " + inputProducts);
         let tempFilterResult;
         if (maxPrice > 0) {
-            tempFilterResult = products.filter(product => product.price >= minPrice && product.price <= maxPrice)
-        } else tempFilterResult = products.filter(product => product.price >= minPrice);
+            tempFilterResult = inputProducts.filter(cart => cart.product.price >= minPrice && cart.product.price <= maxPrice)
+        } else tempFilterResult = inputProducts.filter(cart => cart.product.price >= minPrice);
+        // console.log("Cart tempResult: " + JSON.stringify(tempFilterResult));
         tempFilterResult = tempFilterResult
-            .filter(product => product.sale >= minSale && product.sale <= maxSale)
-            .filter(product => type.includes(product.type));
-        console.log("Cart.js:" + sort);
+            .filter(cart => cart.product.sale >= minSale && cart.product.sale <= maxSale)
+            .filter(cart => type.includes(cart.product.type));
+            console.log("Cart tempResult: " + tempFilterResult);
         switch (sort) {
             case "priceDown":
-                tempFilterResult.sort((product1, product2) => product2.price * (100 - product2.sale) / 100 - product1.price * (100 - product1.sale) / 100);
+                tempFilterResult.sort((cart1, cart2) => cart2.product.price * (100 - cart2.product.sale) / 100 - cart1.product.price * (100 - cart1.product.sale) / 100);
                 break;
             case "priceUp":
-                tempFilterResult.sort((product1, product2) => product1.price * (100 - product1.sale) / 100 - product2.price * (100 - product2.sale) / 100);
+                tempFilterResult.sort((cart1, cart2) => cart1.product.price * (100 - cart1.product.sale) / 100 - cart2.product.price * (100 - cart2.product.sale) / 100);
                 break;
             case "saleDown":
-                tempFilterResult.sort((product1, product2) => product2.sale - product1.sale);
+                tempFilterResult.sort((cart1, cart2) => cart2.product.sale - cart1.product.sale);
                 break;
             case "saleUp":
-                tempFilterResult.sort((product1, product2) => product2.sale - product1.sale);
+                tempFilterResult.sort((cart1, cart2) => cart2.product.sale - cart1.product.sale);
                 break;
             default: break;
         }
         setProductsToDisplay(tempFilterResult);
+        return tempFilterResult;
     }
 
 
@@ -112,20 +122,25 @@ export default function Cart() {
     }
 
     useEffect(() => {
-        filterCart();
+        filterCart(products);
+        console.log('filtered: display ' + productsToDisplay);
     }, [minPrice, maxPrice, minSale, maxSale, type, sort, products])
 
-    const findCardId = (userId, productId) => {
-        const cardId = cart.filter(cart => cart.userId === userId && cart.productId === productId);
-        if (cardId.length > 0) { return cardId[0].id; }
-        else { return null; }
-    }
+    // const findCartId = (userId, productId) => {
+    //     const cartId = cart.filter(cart => cart.userId === userId && cart.productId === productId);
+    //     if (cartId.length > 0) { return cartId[0].id; }
+    //     else { return null; }
+    // }
 
-    const removeFromCart = (productId) => {
-        const cardId = findCardId(currentUser.id, productId);
-        CartService.removeProductFromCart(cardId).then(
+    const removeFromCart = (cartId) => {
+        // const cartId = findCartId(currentUser.id, productId);
+        console.log('cartId to remove: ' + cartId);
+        CartService.removeProductFromCart(cartId).then(
             (res) => {
-                const tempProductList = products.filter(product => product.id !== productId);
+                const tempProductList = products.filter(cart => cart.cartId !== cartId);
+                // const tempOutputFilter = filterCart(tempProductList);
+                console.log("tempProductList " + tempProductList);
+                // setProductsToDisplay(tempOutputFilter);
                 setProducts(tempProductList);
             }
         ).catch(err => { console.log(err); });
@@ -263,30 +278,30 @@ export default function Cart() {
                                 <option value="saleDown">Sort By Sale DESC</option>
                                 <option value="saleUp">Sort By Sale ASC</option>
                             </select>
-                            {productsToDisplay.map((product, index) => (
+                            {productsToDisplay.map((cart, index) => (
                                 <div className="card" key={index}>
                                     <div className="row no-gutters">
                                         <div className="col-md-4">
-                                            <img src={product.imageUrl} alt="Product" className="card-img" />
+                                            <img src={cart.product.imageUrl} alt="Product" className="card-img" />
                                         </div>
                                         <div className="col-md-8">
                                             <div className="card-body">
                                                 <div className="position-relative">
-                                                    <button className="btn btn-secondary close position-absolute top-0 end-0" aria-label="Close" onClick={() => removeFromCart(product.id)}>
+                                                    <button className="btn btn-secondary close position-absolute top-0 end-0" aria-label="Close" onClick={() => removeFromCart(cart.cartId)}>
                                                         <span aria-hidden="true">Remove</span>
                                                     </button>
                                                 </div>
-                                                <h5 className="card-title">{product.name}</h5>
-                                                <p className="card-text"><strong>Type: </strong>{product.type}</p>
-                                                <p className="card-text">{product.description}</p>
-                                                {product.sale > 0 ? (
+                                                <h5 className="card-title">{cart.product.name}</h5>
+                                                <p className="card-text"><strong>Type: </strong>{cart.product.type}</p>
+                                                <p className="card-text">{cart.product.description}</p>
+                                                {cart.product.sale > 0 ? (
                                                     <p className="card-text">
-                                                        <strong>Price:</strong> <del>{product.price}</del> - {product.sale}% =&gt;{' '}
-                                                        <span>{(product.price * (100 - product.sale)) / 100}$</span>
+                                                        <strong>Price:</strong> <del>{cart.product.price}</del> - {cart.product.sale}% =&gt;{' '}
+                                                        <span>{(cart.product.price * (100 - cart.product.sale)) / 100}$</span>
                                                     </p>
                                                 ) : (
                                                     <p className="card-text">
-                                                        <strong>Price:</strong> {product.price}
+                                                        <strong>Price:</strong> {cart.product.price}
                                                     </p>
                                                 )}
                                             </div>

@@ -12,7 +12,6 @@ import Cart from './layout/pages/cart/Cart';
 import ProductDetail from './layout/pages/product/ProductDetail';
 import UserDetail from './layout/pages/user/UserDetail';
 
-
 function App() {
   return (
     <div className="App">
@@ -33,7 +32,7 @@ function App() {
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
       </Routes>
-    </div>
+    </div >
   );
 }
 
