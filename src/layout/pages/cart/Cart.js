@@ -301,8 +301,8 @@ export default function Cart() {
                                                 <p className="card-text">{cart.product.description}</p>
                                                 {cart.product.sale > 0 ? (
                                                     <p className="card-text">
-                                                        <strong>Price:</strong> <del>{cart.product.price}</del> - {cart.product.sale}% =&gt;{' '}
-                                                        <span>{(cart.product.price * (100 - cart.product.sale)) / 100}$</span>
+                                                        <strong>Price:</strong> <del>{cart && cart.product.price.toLocaleString()}</del> - {cart.product.sale}% =&gt;{' '}
+                                                        <span>{((cart.product.price * (100 - cart.product.sale)) / 100).toLocaleString()}$</span>
                                                     </p>
                                                 ) : (
                                                     <p className="card-text">
